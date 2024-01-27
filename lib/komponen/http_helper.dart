@@ -1,7 +1,7 @@
 import 'dart:io';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
-import '../model/movie.dart';
+import 'package:uas_angger_moviedb_21201198/model/movie.dart';
 
 class HttpHelper{
 /*

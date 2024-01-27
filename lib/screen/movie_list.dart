@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../komponen/http_helper.dart';
+import 'package:uas_angger_moviedb_21201198/komponen/http_helper.dart';
 
 class MovieList extends StatefulWidget {
   const MovieList({super.key});
@@ -21,7 +21,7 @@ class _MovieListState extends State<MovieList> {
     });
     return Scaffold(
       appBar: AppBar(
-        title: Text('Daftar Film')
+        title: const Text('Daftar Film')
       ),
       body: Text(result),
     );

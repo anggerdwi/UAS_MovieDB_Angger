@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../model/movie.dart';
+import 'package:uas_angger_moviedb_21201198/model/movie.dart';
 
 class MovieDetail extends StatelessWidget {
   final Movie selectedMovie;
@@ -27,37 +27,49 @@ class MovieDetail extends StatelessWidget {
           child: Column(
             children: <Widget>[
               Container(
-                padding: EdgeInsets.all(16),
+                padding: const EdgeInsets.all(16),
                 height: screenHeight / 1.5,
                 child: Image.network(path),
               ),
               Container(
-                padding: EdgeInsets.all(16),
+                padding: const EdgeInsets.all(16),
                 child: Text('${selectedMovie.overview}'),
               ),
               Padding(
-                padding: EdgeInsets.all(16),
+                padding: const EdgeInsets.all(16),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
                     Expanded(
                       child: Container(
                         alignment: Alignment.centerLeft,
-                        child: Text('Rate: ${selectedMovie.voteAverage}'),
+                        // texticon rating with star
+                        child: Row(
+                          children: <Widget>[
+                            const Icon(Icons.star, color: Colors.amber,),
+                            Text(' ${selectedMovie.voteAverage} / 10'),
+                          ],
+                        ),
                       ),
                     ),
                     Expanded(
                       child: Container(
                         alignment: Alignment.centerRight,
-                        child: Text('Release: ${selectedMovie.releaseDate}'),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: <Widget>[
+                            const Icon(Icons.calendar_today, color: Colors.blue,),
+                            Text(' ${selectedMovie.releaseDate}'),
+                          ],
+                        )
                       ),
                     ),
                   ],
                 ),
               ),
               Container(
-                padding: EdgeInsets.all(16),
-                child: Text('Created By Angger Dwi Prasetia, NIM: 20201241'),
+                padding: const EdgeInsets.all(16),
+                child: const Text('Created By Angger Dwi Prasetia, NIM: 20201241'),
               ),
             ],
           ),

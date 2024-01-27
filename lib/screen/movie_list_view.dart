@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:uas_angger_moviedb_21201198/komponen/http_helper.dart';
-import '../model/movie.dart';
 import 'movie_detail.dart';
 
 
@@ -13,8 +12,8 @@ class MovieListView extends StatefulWidget { //2
 
 class _MovieListViewState extends State<MovieListView> {
 
-  Icon searchIcon = Icon(Icons.search);
-  Widget titleBar = Text('Daftar Film');
+  Icon searchIcon = const Icon(Icons.search);
+  Widget titleBar = const Text('Daftar Film');
  
   late int moviesCount;
   late List movies;
@@ -31,24 +30,24 @@ class _MovieListViewState extends State<MovieListView> {
 
   void toggleSearch() {
     setState(() {
-      if (this.searchIcon.icon == Icons.search) {
-        this.searchIcon = Icon(Icons.cancel);
-        this.titleBar = TextField(
+      if (searchIcon.icon == Icons.search) {
+        searchIcon = const Icon(Icons.cancel);
+        titleBar = TextField(
           autofocus: true,
           onSubmitted: (text) {
             searchMovies(text);
           },
-          decoration: InputDecoration(hintText: 'Ketik kata pencarian'),
+          decoration: const InputDecoration(hintText: 'Ketik kata pencarian'),
           textInputAction: TextInputAction.search,
-          style: TextStyle(
+          style: const TextStyle(
             color: Colors.white,
             fontSize: 20.0,
           ),
         );
       } else {
         setState(() {
-          this.searchIcon = Icon(Icons.search);
-          this.titleBar = Text('Daftar Film');
+          searchIcon = const Icon(Icons.search);
+          titleBar = const Text('Daftar Film');
         });
         defaultList();
       }
@@ -95,42 +94,42 @@ class _MovieListViewState extends State<MovieListView> {
           child: ListView(
               children: [
                 ListTile(
-                  title: Text('Top Rated'),
+                  title: const Text('Top Rated'),
                   onTap: () {
                     Navigator.pop(context);
                     setState(() {
-                      this.searchIcon = Icon(Icons.search);
-                      this.titleBar = Text('Daftar Film Rating Tertinggi');
+                      searchIcon = const Icon(Icons.search);
+                      titleBar = const Text('Daftar Film Rating Tertinggi');
                     });
                     topRatedList();
                   },
                 ),
                 ListTile(
-                title: Text('Upcoming'),
+                title: const Text('Upcoming'),
                 onTap: () {
                   Navigator.pop(context); //untuk menutup drawer
                   setState(() {
-                    this.searchIcon = Icon(Icons.search);
-                    this.titleBar = Text('Daftar Film');
+                    searchIcon = const Icon(Icons.search);
+                    titleBar = const Text('Daftar Film');
                   });
                   defaultList(); //perintah getUpcoming()
                 },
               ),
               ListTile(
-              title: Text('Cari'),
+              title: const Text('Cari'),
                 onTap: () {
                   Navigator.pop(context);
                   setState(() {
-                  this.searchIcon = Icon(Icons.cancel);
-                  this.titleBar = TextField(
+                  searchIcon = const Icon(Icons.cancel);
+                  titleBar = TextField(
                   autofocus: true,
                   onSubmitted: (text) {
                   searchMovies(text); //perintah cari Movie
                   },
                   decoration:
-                  InputDecoration(hintText: 'Ketik kata pencarian'),
+                  const InputDecoration(hintText: 'Ketik kata pencarian'),
                     textInputAction: TextInputAction.search,
-                    style: TextStyle(
+                    style: const TextStyle(
                     color: Colors.white,
                     fontSize: 20.0,
                   ),
@@ -178,12 +177,19 @@ class _MovieListViewState extends State<MovieListView> {
                 backgroundImage: image,
               ),
               title: Text(movies[position].title),
-              subtitle: Text(
-                'Released: ' +
-                    movies[position].releaseDate +
-                    ' - Vote: ' +
-                    movies[position].voteAverage.toString(),
+              subtitle: Row(
+                children: <Widget>[
+                  const Icon(Icons.star, color: Colors.amber,),
+                  Text(movies[position].voteAverage.toString()),
+                ],
               ),
+              trailing: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: <Widget>[
+                  Text(movies[position].releaseDate),
+                ],
+              ),
+              // trailing: Row,
             ),
           );
         },

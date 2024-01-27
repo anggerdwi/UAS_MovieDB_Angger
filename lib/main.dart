@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'screen/movie_list.dart';
 import 'screen/movie_list_view.dart';
 
 void main(){
@@ -11,7 +10,7 @@ class Myapp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'MovieDB',
       home: MovieListView(),
